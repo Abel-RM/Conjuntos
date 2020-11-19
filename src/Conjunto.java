@@ -8,13 +8,12 @@ public class Conjunto {
     public Conjunto(){
     }
 
-    public void addElementsU(Collection c){
+    public static void setUniverso(Collection c){
         universo.addAll(c);
     }
 
 
 
-    //cambiar a tipo collection
     public Conjunto(Collection c){
         elementos.addAll(c);
     }
@@ -56,9 +55,7 @@ public class Conjunto {
     }
 
     public boolean subsetP(Conjunto c){
-        if (c.getElementos().containsAll(elementos) && c.getElementos().size() > elementos.size())
-            return true;
-        else return false;
+        return c.getElementos().containsAll(elementos) && c.getElementos().size() > elementos.size();
     }
 
     public Conjunto union(Conjunto c){
@@ -84,9 +81,9 @@ public class Conjunto {
         return new Conjunto(temp1);
     }
 
-    public Conjunto complement(Conjunto c){
+    public Conjunto complement(){
         HashSet<Integer> temp1 = new HashSet<>();
-        temp1.addAll(c.getElementos());
+        temp1.addAll(universo);
         temp1.removeAll(elementos);
         return new Conjunto(temp1);
     }
