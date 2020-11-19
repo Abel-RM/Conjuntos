@@ -1,20 +1,13 @@
+import javax.swing.plaf.IconUIResource;
 import java.util.*;
 
 public class UsaConjuntos {
     public static void main(String[] args) {
-        HashSet<ArrayList<Integer>> list = new HashSet<>();
-        HashSet<ArrayList<Integer>> list2 = new HashSet<>();
+        HashSet<Integer> list = new HashSet<>();
+        HashSet<Integer> list2 = new HashSet<>();
 
-        list.add(new ArrayList<>(Arrays.asList(1)));
-        list.add(new ArrayList<>(Arrays.asList(2)));
-        list.add(new ArrayList<>(Arrays.asList(3)));
-        list.add(new ArrayList<>(Arrays.asList(4)));
-        list2.add(new ArrayList<>(Arrays.asList(1)));
-        list2.add(new ArrayList<>(Arrays.asList(2)));
-        list2.add(new ArrayList<>(Arrays.asList(3)));
-        list2.add(new ArrayList<>(Arrays.asList(4)));
-        list2.add(new ArrayList<>(Arrays.asList(5)));
-        list2.add(new ArrayList<>(Arrays.asList(6)));
+        list.addAll(new ArrayList<>(Arrays.asList(1,2,3,4)));
+        list2.addAll(new ArrayList<>(Arrays.asList(1,2,3,4,5,6)));
 
         Conjunto c = new Conjunto(list);
         Conjunto c2 = new Conjunto(list2);
@@ -27,9 +20,7 @@ public class UsaConjuntos {
         System.out.println("El conjunto c esta vacio:");
         System.out.println(c.empty());
         System.out.println("El conjunto c contiene :(3)");
-        ArrayList<Integer> temp = new ArrayList<>();
-        temp.add(3);
-        System.out.println(c.contains(temp));
+        System.out.println(c.contains(3));
         System.out.println("El conjunto c es subconjunto de c2:");
         System.out.println(c.subset(c2));
         System.out.println("El conjunto c es subconjunto propio de c2:");
@@ -43,10 +34,23 @@ public class UsaConjuntos {
         System.out.println("El complemento de c con c2 es:");
         System.out.println(c.complement(c2));
         System.out.println("El producto cartesiano de c con c2 es:");
-        System.out.println(c.productC(c2));
+        System.out.print("{");
+        for (Pareja pareja: c.productC(c2)){
+            System.out.print(pareja);
+        }
+        System.out.println("}");
         System.out.println("El conjunto clone de c es:");
         System.out.println(c.clone());
         System.out.println("El conjunto potencia de c es:");
-        System.out.println(c.pow());
+        int count = 0;
+        System.out.print("{");
+        HashSet<Conjunto> potencia= (HashSet<Conjunto>) c.pow();
+        for (Conjunto conjunto: potencia){
+            System.out.print(conjunto);
+            count++;
+            if (count <potencia.size() )
+                System.out.print(",");
+        }
+        System.out.println("}");
     }
 }
