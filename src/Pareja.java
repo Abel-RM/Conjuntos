@@ -1,9 +1,19 @@
-public class Pareja {
-    private int e1;
-    private int e2;
+import java.io.Serializable;
 
-    public Pareja(int e1, int e2) {
+public class Pareja<T1,T2> implements Serializable {
+    private  T1 e1;
+    private  T2 e2;
+
+    public Pareja(T1 e1,T2 e2) {
         this.e1 = e1;
+        this.e2 = e2;
+    }
+
+    public void setE1(T1 e1) {
+        this.e1 = e1;
+    }
+
+    public void setE2(T2 e2) {
         this.e2 = e2;
     }
 
